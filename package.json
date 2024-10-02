@@ -1,0 +1,22 @@
+{
+  "name": "cds",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/bun": "latest",
+    "@types/jest": "^29.5.13",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
