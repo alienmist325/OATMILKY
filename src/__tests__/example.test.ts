@@ -5,7 +5,7 @@ import CoffeeShopLocator from "../CoffeeShopLocator";
 describe("Coffee Shop Locator", () => {
   describe("when I have specified my location", () => {
     describe("and I have entered my preferred search radius", () => {
-      let mockFetchShops;
+      let mockFetchShops: jest.SpyInstance;
       let location: string;
       let radius: number;
       let coffeeShopLocator: CoffeeShopLocator;
@@ -52,6 +52,12 @@ describe("Coffee Shop Locator", () => {
         expect(coffeeShopLocator.getMatchingShops(location, radius)).toBe(
           copperCoffee
         );
+      });
+
+      it("should call `fetchShops` with the correct location and radius", () => {
+        coffeeShopLocator.getMatchingShops(location, radius);
+
+        expect(mockFetchShops).toHaveBeenCalledWith(location, radius);
       });
     });
   });
