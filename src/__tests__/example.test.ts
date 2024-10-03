@@ -1,18 +1,6 @@
 import CoffeeShop from "../CoffeeShop";
 import GoogleMaps from "../GoogleMaps";
-
-class CoffeeShopLocator {
-  private maps;
-
-  constructor(maps: GoogleMaps) {
-    this.maps = maps;
-  }
-
-  getMatchingShops(location: string, radiusInMetres: number) {
-    const shopsInRadius = this.maps.fetchShops(location, radiusInMetres);
-    return shopsInRadius[0];
-  }
-}
+import CoffeeShopLocator from "../CoffeeShopLocator";
 
 describe("Coffee Shop Locator", () => {
   describe("when I have specified my location", () => {
