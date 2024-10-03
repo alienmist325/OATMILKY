@@ -5,27 +5,32 @@ import CoffeeShopLocator from "../CoffeeShopLocator";
 describe("Coffee Shop Locator", () => {
   describe("when I have specified my location", () => {
     describe("and I have entered my preferred search radius", () => {
-      it("should return Copper Coffee, given a certain set of coffee shops.", () => {
-        const blankStreetCoffee = new CoffeeShop(
-          "Blank Street Coffee",
-          false,
-          true
-        );
+      let mockFetchShops;
+      let location: string;
+      let radius: number;
+      let coffeeShopLocator: CoffeeShopLocator;
 
-        const coffeeMTowerOfLondon = new CoffeeShop(
-          "coffeeM Tower of London",
-          true,
-          false
-        );
+      const blankStreetCoffee = new CoffeeShop(
+        "Blank Street Coffee",
+        false,
+        true
+      );
 
-        const hagenEspresso = new CoffeeShop(
-          "Hagen Espresso Bar (Hagen Royal Exchange)",
-          false,
-          false
-        );
+      const coffeeMTowerOfLondon = new CoffeeShop(
+        "coffeeM Tower of London",
+        true,
+        false
+      );
 
-        const copperCoffee = new CoffeeShop("Copper Coffee", true, true);
+      const hagenEspresso = new CoffeeShop(
+        "Hagen Espresso Bar (Hagen Royal Exchange)",
+        false,
+        false
+      );
 
+      const copperCoffee = new CoffeeShop("Copper Coffee", true, true);
+
+      beforeEach(() => {
         const mockShops = [
           copperCoffee,
           blankStreetCoffee,
@@ -33,15 +38,17 @@ describe("Coffee Shop Locator", () => {
           hagenEspresso,
         ];
 
-        const location = "1, Sky Garden Walk, London EC3M 8AF";
-        const radius = 1000;
+        location = "1, Sky Garden Walk, London EC3M 8AF";
+        radius = 1000;
 
         const maps = new GoogleMaps();
-        const mockFetchShops = jest.spyOn(maps, "fetchShops");
+        mockFetchShops = jest.spyOn(maps, "fetchShops");
         mockFetchShops.mockReturnValue(mockShops);
 
-        const coffeeShopLocator = new CoffeeShopLocator(maps);
+        coffeeShopLocator = new CoffeeShopLocator(maps);
+      });
 
+      it("should return Copper Coffee, given a certain set of coffee shops.", () => {
         expect(coffeeShopLocator.getMatchingShops(location, radius)).toBe(
           copperCoffee
         );
