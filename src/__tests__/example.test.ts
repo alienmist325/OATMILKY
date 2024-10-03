@@ -1,12 +1,5 @@
 import CoffeeShop from "../CoffeeShop";
-
-class GoogleMaps {
-  constructor() {}
-
-  fetchShops(location: string, radiusInMetres: number): CoffeeShop[] {
-    return [];
-  }
-}
+import GoogleMaps from "../GoogleMaps";
 
 class CoffeeShopLocator {
   private maps;
