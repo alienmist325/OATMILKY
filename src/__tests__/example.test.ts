@@ -2,33 +2,29 @@ import CoffeeShop from "../CoffeeShop";
 import GoogleMaps from "../GoogleMaps";
 import CoffeeShopLocator from "../CoffeeShopLocator";
 
+const blankStreetCoffee = new CoffeeShop("Blank Street Coffee", false, true);
+
+const coffeeMTowerOfLondon = new CoffeeShop(
+  "coffeeM Tower of London",
+  true,
+  false
+);
+
+const hagenEspresso = new CoffeeShop(
+  "Hagen Espresso Bar (Hagen Royal Exchange)",
+  false,
+  false
+);
+
+const copperCoffee = new CoffeeShop("Copper Coffee", true, true);
+
 describe("Coffee Shop Locator", () => {
-  describe("when I have specified my location", () => {
-    describe("and I have entered my preferred search radius", () => {
+  describe("when I have specified my location and search radius", () => {
+    describe("and there are matches", () => {
       let mockFetchShops: jest.SpyInstance;
       let location: string;
       let radius: number;
       let coffeeShopLocator: CoffeeShopLocator;
-
-      const blankStreetCoffee = new CoffeeShop(
-        "Blank Street Coffee",
-        false,
-        true
-      );
-
-      const coffeeMTowerOfLondon = new CoffeeShop(
-        "coffeeM Tower of London",
-        true,
-        false
-      );
-
-      const hagenEspresso = new CoffeeShop(
-        "Hagen Espresso Bar (Hagen Royal Exchange)",
-        false,
-        false
-      );
-
-      const copperCoffee = new CoffeeShop("Copper Coffee", true, true);
 
       beforeEach(() => {
         const mockShops = [
@@ -59,6 +55,10 @@ describe("Coffee Shop Locator", () => {
 
         expect(mockFetchShops).toHaveBeenCalledWith(location, radius);
       });
+    });
+
+    describe("and there are no matches", () => {
+      it("should return no coffee shops", () => {});
     });
   });
 });
